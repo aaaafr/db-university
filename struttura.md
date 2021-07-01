@@ -10,48 +10,50 @@
 
 
 ## DIPARTIMENTI
-- id
-- nome
-- desc
-- luogo
-- servizi 
+- id      BINGINT PRIMARY KEY UNIQUE NOTNULL INDEX
+- dipartimenti_id      BIGINT FKEY
+- nome    VARCHAR(50) NOTNULL
+- desc    TEXT NULL
+- luogo   VARCHAR(50) NULL
+- servizi VARCHAR(255) NULL
 
 
 ## LAUREA
-- id
-- nome
-- desc
-- sede
+- id       BINGINT PRIMARY KEY UNIQUE NOTNULL INDEX
+- nome     VARCHAR(50) NOTNULL
+- desc     TEXT NULL
+- sede     VARCHAR(50) NULL
 
 
 
 ## CORSI
-- id
-- nome
-- desc 
-- cfu
-- aule
+- id     BINGINT PRIMARY KEY UNIQUE NOTNULL INDEX
+- corsi_id  BIGINT FKEY
+- nome   VARCHAR(50) NOTNULL
+- desc   TEXT NULL
+- cfu    TINYINT NOT NULL
+- aule   VARCHAR(20) NULL
 
 ## INSEGNANTI
-- id 
-- nome
-- cognome
-- studi
+- id        BINGINT PRIMARY KEY UNIQUE NOTNULL INDEX
+- nome      VARCHAR(20) NOTNULL
+- cognome   VARCHAR(20) NOTNULL
+- studi     VARCHAR(100) NOTNULL
 
 ## APPELLI
-- id
-- nome
-- data
-- ora
-- luogo
+- id      BINGINT PRIMARY KEY UNIQUE NOTNULL INDEX
+- nome    VARCHAR(50) NOTNULL
+- data    DATE NOTNULL
+- ora     TIME NULL
+- luogo   VARCHAR(50) NULL
 
 ## STUDENTI
-- id
-- nome
-- cognome
-- matricola
+- id          BINGINT PRIMARY KEY UNIQUE NOTNULL INDEX
+- nome        VARCHAR(50) NOTNULL  
+- cognome     VARCHAR(50) NOTNULL
+- matricola   VARCHAR(50) NOTNULL
 
 
 ## VOTI
-- id
-- valutazione
+- id             BINGINT PRIMARY KEY UNIQUE NOTNULL INDEX
+- valutazione    TINYINT NOTNULL
