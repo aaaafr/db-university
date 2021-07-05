@@ -57,3 +57,5 @@
 ## VOTI
 - id             BINGINT PRIMARY KEY UNIQUE NOTNULL INDEX
 - valutazione    TINYINT NOTNULL
+
+
