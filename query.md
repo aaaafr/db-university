@@ -46,4 +46,27 @@ BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
 <!-- group by  -->
 
 <!-- 1 -->
+SELECT COUNT(id) FROM students GROUP BY enrolment_date
+
+
+<!-- 2  -->
+SELECT COUNT(id) FROM teachers GROUP BY office_address
+
+<!-- 3 -->
+
+
+<!-- 4 -->
+SELECT COUNT(id) FROM degrees GROUP BY department_id
+
+
+
+<!-- joins -->
+<!-- 1 -->
+SELECT * FROM students INNER JOIN degrees ON degree_id = students.degree_id  WHERE degrees.name = 'Corso di Laurea in Economia'
+
+<!-- 2 -->
+SELECT * FROM degrees INNER JOIN departments ON departments.id = degrees.department_id WHERE departments.name = 'Dipartimento di Neuroscienze'
+
+<!-- 3 -->
+
 
