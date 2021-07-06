@@ -46,17 +46,20 @@ BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
 <!-- group by  -->
 
 <!-- 1 -->
-SELECT COUNT(id) FROM students GROUP BY enrolment_date
+SELECT COUNT(*) AS `nome_studente`, YEAR(`enrolment_date`)  AS `anno_di_iscrizione`
+FROM `students` GROUP BY `enrolment_date`
 
 
 <!-- 2  -->
-SELECT COUNT(id) FROM teachers GROUP BY office_address
+SELECT COUNT(*) AS `current_teachers`, `office_address` FROM `teachers` GROUP BY `office_address`
 
 <!-- 3 -->
-
+SELECT AVG(`vote`) AS `media_voti`, `exam_id`
+FROM `exam_student`
+GROUP BY `exam_id`
 
 <!-- 4 -->
-SELECT COUNT(id) FROM degrees GROUP BY department_id
+SELECT COUNT(*)  FROM degrees GROUP BY department_id
 
 
 
@@ -68,5 +71,43 @@ SELECT * FROM students INNER JOIN degrees ON degree_id = students.degree_id  WHE
 SELECT * FROM degrees INNER JOIN departments ON departments.id = degrees.department_id WHERE departments.name = 'Dipartimento di Neuroscienze'
 
 <!-- 3 -->
+SELECT courses .* FROM course_teacher JOIN courses ON   courses.id = course_teacher.course_id
+JOIN teachers ON teachers.id = course_teacher.teacher_id
+WHERE teachers.name = 'Fulvio' AND teachers.surname = 'Amato'
 
 
+<!-- 4 -->
+SELECT students.surname, students.name, degrees.name, degrees.level, departments.name
+FROM students
+JOIN degrees ON students.degree_id = degrees.id
+JOIN departments ON degrees.department_id = departments.id
+ORDER BY students.surname, students.name
+<!-- 5 -->
+SELECT degrees.name, courses.name, teachers.name, teachers.surname 
+FROM degrees
+JOIN courses
+ON degrees.id = courses.degree_id
+JOIN course_teacher 
+ON course_teacher.course_id = courses.id
+JOIN teachers 
+ON course_teacher.teacher_id = teachers.id
+<!-- 6 -->
+SELECT departments.name, departments.address, departments.website, teachers.name, teachers.surname
+FROM departments 
+JOIN degrees ON degrees.department_id = departments.id
+JOIN courses ON degrees.id = courses.degree_id
+JOIN course_teacher ON courses.id = course_teacher.course_id
+JOIN teachers ON course_teacher.teacher_id = teachers.id
+WHERE departments.name = 'Dipartimento di Matematica'
+
+<!-- 7 -->
+
+SELECT COUNT(courses.name) AS 'tentativi', students.name AS 'student_name', students.surname AS 'student_surname' , courses.name AS 'course_name' 
+FROM exam_student 
+JOIN exams 
+ON exam_student.exam_id = exams.id 
+JOIN students 
+ON exam_student.student_id = students.id 
+JOIN courses 
+ON exams.course_id = courses.id 
+GROUP BY students.id, courses.name
